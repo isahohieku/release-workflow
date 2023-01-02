@@ -1,1 +1,1 @@
-console.log('Rrelase was successful')
+console.log('Release was successful')
