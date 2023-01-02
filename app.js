@@ -1,0 +1,1 @@
+console.log('Rrelase was successful')
