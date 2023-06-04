@@ -1,0 +1,26 @@
+{
+  "name": "release-workflow",
+  "version": "1.0.0",
+  "description": "Workflow",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/isahohieku/release-workflow.git"
+  },
+  "keywords": [
+    "workflow", "github-actions", "github", "actions", "push"
+  ],
+  "author": "Isah Ohieku",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/isahohieku/release-workflow/issues"
+  },
+  "homepage": "https://github.com/isahohieku/release-workflow#readme",
+  "dependencies": {
+    "cowsay": "^1.5.0"
+  }
+}
