@@ -34,14 +34,14 @@ jobs:
       - name: Lint App
         run: |
           echo "Linting app..."
-          sleep 60
+          sleep 30
 
       - name: Build App
         run: |
           echo "Building app..."
-          sleep 60
+          sleep 30
 
       - name: Test App
         run: |
           echo "Testing app..."
-          sleep 60
+          sleep 30
