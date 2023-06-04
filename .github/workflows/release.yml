@@ -19,14 +19,27 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Check if other push workflows are running
+
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
         run: |
-          if [[ $(workflows | wc -l) -eq 0 ]]; then
-            echo "No other workflows are running, so pushing tag..."
-          else
-            echo "Other workflows are still running, so waiting..."
-            sleep 10
-          fi
+          echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
+          echo "github.ref_name = ${GITHUB_REF_NAME}"
+          echo "github.ref = ${GITHUB_REF}"
+          echo "github.event.workflow_run.head_branch = ${HEAD_BRANCH}"
+        env:
+          HEAD_BRANCH: ${{ github.event.workflow_run.head_branch }}
+      - uses: actions/cache@v3
+        id: yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Install App Dependencies
+        run: yarn install --frozen-lockfile
+
       - name: Run app
         run: node app.js
     
