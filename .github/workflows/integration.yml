@@ -41,7 +41,7 @@ jobs:
           echo "Building app..."
           sleep 60
 
-      - name: Test App (Integration)
+      - name: Test App
         run: |
           echo "Testing app..."
           sleep 60
