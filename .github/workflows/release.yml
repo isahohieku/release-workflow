@@ -19,25 +19,6 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Check if other push workflows are running
-        id: wait
-        uses: actions/github-script@v4
-        with:
-          script: |
-            const completedWorkflows = github.event.workflow_run.conclusion;
-            const pushWorkflows = github.event.workflow_run.repository.workflows.edges
-              .map(edge => edge.node)
-              .filter(node => node.event === 'push' && node.status !== 'COMPLETED')
-              .map(node => node.name);
-
-            if (pushWorkflows.length > 0) {
-              console.log(`Waiting for push workflows: ${pushWorkflows.join(', ')}`);
-              return { wait: true };
-            } else {
-              console.log('No push workflows in progress. Proceeding with tag workflow.');
-              return { wait: false };
-            }
-            - uses: actions/checkout@v3
 
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path

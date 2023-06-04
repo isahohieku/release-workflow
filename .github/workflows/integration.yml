@@ -1,7 +1,9 @@
 name: Continuous Integration
 
-on: [push]
-
+on: 
+  push:
+    branches:
+      - '**'
 jobs:
   Lint-and-Build-and-Test:
     runs-on: ubuntu-latest
