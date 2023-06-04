@@ -8,6 +8,8 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
+    env:
+      WHO_AM_I: ${{ secrets.WHO_AM_I  }}
     strategy:
       fail-fast: true
       matrix:
@@ -17,6 +19,14 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
+      - name: Check if other push workflows are running
+        run: |
+          if [[ $(workflows | wc -l) -eq 0 ]]; then
+            echo "No other workflows are running, so pushing tag..."
+          else
+            echo "Other workflows are still running, so waiting..."
+            sleep 10
+          fi
       - name: Run app
         run: node app.js
     
