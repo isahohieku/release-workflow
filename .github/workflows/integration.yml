@@ -20,7 +20,11 @@ jobs:
 
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
-        run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
+        run: |
+          echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
+          echo "github.ref_name = ${GITHUB_REF_NAME}"
+          echo "github.ref = ${GITHUB_REF}"
+          echo "github.event.workflow_run.head_branch = ${HEAD_BRANCH}"
       - uses: actions/cache@v3
         id: yarn-cache
         with:
