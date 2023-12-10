@@ -51,3 +51,4 @@ jobs:
         run: |
           echo "Testing app..."
           sleep 10
+          node app.js
