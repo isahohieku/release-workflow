@@ -19,7 +19,9 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: Add Build version
         id: add-build-version
-        run: echo "app_build=$(date +'%Y%m%d.%H%M%S')" >> $GITHUB_OUTPUT
+        run: |
+          echo "app_build=$(date +'%Y%m%d.%H%M%S')" >> $GITHUB_OUTPUT
+          echo "app_build=${(date +'%Y%m%d.%H%M%S')}"
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: |
