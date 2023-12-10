@@ -12,7 +12,6 @@ jobs:
     strategy:
       matrix:
         node-version: [14.x]
-
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -21,7 +20,13 @@ jobs:
 
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
-        run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
+        run: |
+          echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
+          echo "github.ref_name = ${GITHUB_REF_NAME}"
+          echo "github.ref = ${GITHUB_REF}"
+          echo "github.event.workflow_run.head_branch = ${HEAD_BRANCH}"
+        env:
+          HEAD_BRANCH: ${{ github.event.workflow_run.head_branch }}
       - uses: actions/cache@v3
         id: yarn-cache
         with:
@@ -29,21 +34,20 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
-
       - name: Install App Dependencies
         run: yarn install --frozen-lockfile
 
       - name: Lint App
         run: |
           echo "Linting app..."
-          sleep 30
+          sleep 10
 
       - name: Build App
         run: |
           echo "Building app..."
-          sleep 30
+          sleep 10
 
       - name: Test App
         run: |
           echo "Testing app..."
-          sleep 30
+          sleep 10
