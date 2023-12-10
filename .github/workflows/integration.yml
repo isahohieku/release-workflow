@@ -21,7 +21,7 @@ jobs:
         id: add-build-version
         run: |
           echo "app_build=$(date +'%Y%m%d.%H%M%S')" >> $GITHUB_OUTPUT
-          echo (date +'%Y%m%d.%H%M%S')
+          echo $(date +'%Y%m%d.%H%M%S')
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: |
