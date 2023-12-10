@@ -22,8 +22,6 @@ jobs:
         run: |
           echo "app_build=$(date +'%Y%m%d.%H%M%S')" >> $GITHUB_OUTPUT
           echo $(date +'%Y%m%d.%H%M%S')
-        env:
-          APP_BUILD: ${{ steps.add-build-version.outputs.app_build }}
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: |
@@ -54,6 +52,8 @@ jobs:
           sleep 10
 
       - name: Test App
+        env:
+          APP_BUILD: ${{ steps.add-build-version.outputs.app_build }}
         run: |
           echo "Testing app..."
           sleep 10
