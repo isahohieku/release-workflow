@@ -44,9 +44,9 @@ jobs:
       - name: "Staging: Build"
         run: |
           echo "Building application..."
-          sleep 60
+          sleep 10
       - name: "Staging: Deploy"
         run: |
           echo "Deploying application..."
-          sleep 60
+          sleep 10
     
