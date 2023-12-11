@@ -3,4 +3,5 @@ const say = require('cowsay').say;
 
 const text = 'Congratulations! This app is superb.'
 
-console.log(say({ text, build_number: process.env.APP_BUILD }));
+console.log(say({ text }));
+console.log({ build_number: process.env.APP_BUILD })
