@@ -9,6 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       WHO_AM_I: ${{ secrets.WHO_AM_I  }}
+      hello: ${{ vars.world }}
     strategy:
       matrix:
         node-version: [14.x]
@@ -36,9 +37,17 @@ jobs:
       - name: Install App Dependencies
         run: yarn install --frozen-lockfile
 
+      - name: Archive an artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: resume
+          path: |
+            dist
+
       - name: Lint App
         run: |
           echo "Linting app..."
+          echo "hello ${{ env.hello }}"
           sleep 10
 
       - name: Build App
