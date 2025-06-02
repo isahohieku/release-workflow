@@ -7,7 +7,7 @@ on:
 jobs:
   Lint-and-Build-and-Test:
     runs-on: ubuntu-latest
-    environment: Dev
+    environment: dev
     env:
       WHO_AM_I: ${{ secrets.WHO_AM_I  }}
       hello: ${{ vars.WORLD }}
