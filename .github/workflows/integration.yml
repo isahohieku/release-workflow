@@ -10,6 +10,7 @@ jobs:
     env:
       WHO_AM_I: ${{ secrets.WHO_AM_I  }}
       hello: ${{ vars.WORLD }}
+      github_environment: ${{ vars.WORLD }}
     strategy:
       matrix:
         node-version: [14.x]
@@ -25,10 +26,9 @@ jobs:
           echo "github.ref_name = ${GITHUB_REF_NAME}"
           echo "github.ref = ${GITHUB_REF}"
           echo "github.event.workflow_run.head_branch = ${HEAD_BRANCH}"
+          echo "${GITHUB_ENV}"
         env:
           HEAD_BRANCH: ${{ github.event.workflow_run.head_branch }}
-          hello: ${{ vars.WORLD }}
-          github_environment: ${{ env.Dev.WORLD }}
       - uses: actions/cache@v3
         id: yarn-cache
         with:
