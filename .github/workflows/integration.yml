@@ -27,6 +27,7 @@ jobs:
           echo "github.event.workflow_run.head_branch = ${HEAD_BRANCH}"
         env:
           HEAD_BRANCH: ${{ github.event.workflow_run.head_branch }}
+          hello: ${{ vars.WORLD }}
       - uses: actions/cache@v3
         id: yarn-cache
         with:
