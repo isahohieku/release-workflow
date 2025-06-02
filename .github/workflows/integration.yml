@@ -26,7 +26,7 @@ jobs:
           echo "github.ref_name = ${GITHUB_REF_NAME}"
           echo "github.ref = ${GITHUB_REF}"
           echo "github.event.workflow_run.head_branch = ${HEAD_BRANCH}"
-          echo "${GITHUB_ENV}"
+          echo "Vars in env: ${vars}"
         env:
           HEAD_BRANCH: ${{ github.event.workflow_run.head_branch }}
       - uses: actions/cache@v3
