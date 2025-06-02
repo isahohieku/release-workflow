@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       WHO_AM_I: ${{ secrets.WHO_AM_I  }}
-      hello: ${{ vars.world }}
+      hello: ${{ vars.WORLD }}
     strategy:
       matrix:
         node-version: [14.x]
