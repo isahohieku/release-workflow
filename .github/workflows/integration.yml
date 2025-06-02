@@ -8,6 +8,7 @@ jobs:
   Lint-and-Build-and-Test:
     runs-on: ubuntu-latest
     env:
+      environment: dev
       WHO_AM_I: ${{ secrets.WHO_AM_I  }}
       hello: ${{ vars.WORLD }}
     strategy:
