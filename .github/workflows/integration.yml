@@ -8,7 +8,6 @@ jobs:
   Lint-and-Build-and-Test:
     runs-on: ubuntu-latest
     env:
-      environment: Dev
       WHO_AM_I: ${{ secrets.WHO_AM_I  }}
       hello: ${{ vars.WORLD }}
     strategy:
@@ -29,6 +28,7 @@ jobs:
         env:
           HEAD_BRANCH: ${{ github.event.workflow_run.head_branch }}
           hello: ${{ vars.WORLD }}
+          github_environment: ${{ env.Dev.WORLD }}
       - uses: actions/cache@v3
         id: yarn-cache
         with:
@@ -50,6 +50,7 @@ jobs:
         run: |
           echo "Linting app..."
           echo "hello $hello"
+          echo "hello $github_environment"
           sleep 10
 
       - name: Build App
