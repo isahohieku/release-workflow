@@ -49,7 +49,7 @@ jobs:
       - name: Lint App
         run: |
           echo "Linting app..."
-          echo "hello ${{ env.hello }}"
+          echo "hello $hello"
           sleep 10
 
       - name: Build App
